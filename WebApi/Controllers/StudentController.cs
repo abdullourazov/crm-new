@@ -1,4 +1,5 @@
 using Domain.ApiResponse;
+using Domain.DTOs;
 using Domain.Entities;
 using Infrastructure.Interface;
 using Infrastructure.Service;
@@ -25,25 +26,25 @@ public class StudentController(StudentService studentService)
     }
 
     [HttpGet("id:int")]
-    public async Task<Response<int>> GetStudentByIdAsync(int id)
+    public async Task<Response<string>> GetStudentByIdAsync(int id)
     {
         return await studentService.GetStudentByIdAsync(id);
     }
 
     [HttpPut]
-    public async Task<Response<bool>> UpdateStudentAsync(Student student)
+    public async Task<Response<string>> UpdateStudentAsync(Student student)
     {
         return await studentService.UpdateStudentAsync(student);
     }
 
     [HttpDelete]
-    public async Task<Response<bool>> DeleteStudentAsync(int id)
+    public async Task<Response<string>> DeleteStudentAsync(int id)
     {
         return await studentService.DeleteStudentAsync(id);
     }
 
     [HttpGet("Get Students With Groups")]
-    public async Task<Response<string>> GetStudentsWithGroupsAsync()
+    public async Task<Response<List<StudentsWithGroups>>> GetStudentsWithGroupsAsync()
     {
         return await studentService.GetStudentsWithGroupsAsync();
     }
